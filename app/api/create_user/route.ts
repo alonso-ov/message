@@ -7,6 +7,8 @@ interface DecodedToken {
   email: string;
 }
 
+type Secret = string | Buffer;
+
 export async function POST(req: Request) {
   const auth = await req.headers.get("authorization");
 
@@ -18,7 +20,7 @@ export async function POST(req: Request) {
 
   // Check if auth is valid...
   try {
-    const secret = Buffer.from("lamePassword123", "base64")
+    const secret: Secret = Buffer.from("lamePassword123", "base64")
     const decoded = jwt.verify(token, secret) as DecodedToken;
 
     // Do something with the decoded token...
