@@ -1,5 +1,6 @@
+'use client'
 
-const Error = () => {
+const ErrorScreen= () => {
     return (
         <div>
             <h1>Error</h1>
@@ -7,4 +8,4 @@ const Error = () => {
     );
 }
 
-export default Error;
+export default ErrorScreen;

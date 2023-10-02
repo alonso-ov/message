@@ -1,13 +1,13 @@
 'use client'
 import { useUser } from '@auth0/nextjs-auth0/client';
 import Loading from './Loading';
-import Error from './Error';
+import ErrorScreen from './ErrorScreen';
 
 const Dashboard = () => {
     const { user, error, isLoading } = useUser();
 
     if (isLoading) return <Loading />;
-    if (error) return <Error />;
+    if (error) return <ErrorScreen />;
     
     console.log(user)
 
