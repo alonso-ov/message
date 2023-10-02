@@ -35,7 +35,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/api/create_user.tsx"
-  ],
+, "app/api/create_user/route.js"  ],
   "exclude": [
     "node_modules"
   ]

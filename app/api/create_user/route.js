@@ -3,13 +3,7 @@ import jwt from "jsonwebtoken";
 import mysql from "mysql2/promise";
 import { connect } from "http2";
 
-interface DecodedToken {
-  email: string;
-}
-
-type Secret = string | Buffer;
-
-export async function POST(req: Request) {
+export async function POST(req) {
   const auth = await req.headers.get("authorization");
 
   if (!auth) {
@@ -20,8 +14,8 @@ export async function POST(req: Request) {
 
   // Check if auth is valid...
   try {
-    const secret: Secret = Buffer.from("lamePassword123", "base64")
-    const decoded = jwt.verify(token, secret) as DecodedToken;
+    const secret = Buffer.from("lamePassword123", "base64")
+    const decoded = jwt.verify(token, secret);
 
     // Do something with the decoded token...
     const { email } = decoded;
