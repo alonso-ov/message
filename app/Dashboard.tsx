@@ -2,37 +2,71 @@
 import { useUser } from '@auth0/nextjs-auth0/client';
 import Loading from './Loading';
 import ErrorScreen from './ErrorScreen';
+import { LogOut, Cog, PlusSquare } from 'lucide-react';
+
+import {
+    Menubar,
+    MenubarContent,
+    MenubarItem,
+    MenubarMenu,
+    MenubarSeparator,
+    MenubarShortcut,
+    MenubarTrigger,
+} from "@/components/ui/menubar"
+import { Menu } from 'lucide-react';
+
 
 const Dashboard = () => {
     const { user, error, isLoading } = useUser();
 
     if (isLoading) return <Loading />;
     if (error) return <ErrorScreen />;
-    
+
     console.log(user)
 
     return (
         user && (
             <div className="flex flex-col w-64 h-screen bg-zinc-50">
                 <div className="flex flex-row items-center p-4 space-x-4 border-b border-gray-300">
-                    <img src={user.picture || "/dir/to/default/asset"} alt={user.name || "Profile Name"} className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"/>
-                    <h2>{user.name}</h2>
-                    <a href="/api/auth/logout">Logout</a>
+                    <Menubar className="w-fit h-full">
+                        <MenubarMenu>
+                            <MenubarTrigger>
+                                <img src={user.picture || "/dir/to/default/asset"} alt={user.name || "Profile Name"} className="w-8 h-8 p-1 rounded-full" />
+                                <h3 className="truncate">{user.name}</h3>
+                            </MenubarTrigger>
+                            <MenubarContent>
+                                <MenubarItem>
+                                <div className="pr-3">
+                                    <Cog />
+                                </div>
+                                    <a>Settings</a>
+                                </MenubarItem>
+                                <MenubarItem>
+                                <div className="pr-3">
+                                    <LogOut />
+                                </div>
+                                <a href="/api/auth/logout">Logout</a>
+                                </MenubarItem>
+                            </MenubarContent>
+                        </MenubarMenu>
+
+                        <MenubarMenu>
+                            <MenubarTrigger>
+                                <Menu />
+                            </MenubarTrigger>
+                            <MenubarContent>
+                                <MenubarItem>
+                                    <div className="pr-3">
+                                        <PlusSquare />
+                                    </div>
+                                    <a>New Chat</a>
+                                </MenubarItem>
+                            </MenubarContent>
+                        </MenubarMenu>
+                    </Menubar>
                 </div>
                 <ul className="flex-1 overflow-y-auto">
-                    <li className="p-4 border-b border-gray-300">Chat 1</li>
-                    <li className="p-4 border-b border-gray-300">Chat 2</li>
-                    <li className="p-4 border-b border-gray-300">Chat 3</li>
-                    <li className="p-4 border-b border-gray-300">Chat 4</li>
-                    <li className="p-4 border-b border-gray-300">Chat 5</li>
-                    <li className="p-4 border-b border-gray-300">Chat 6</li>
-                    <li className="p-4 border-b border-gray-300">Chat 7</li>
-                    <li className="p-4 border-b border-gray-300">Chat 8</li>
-                    <li className="p-4 border-b border-gray-300">Chat 9</li>
-                    <li className="p-4 border-b border-gray-300">Chat 10</li>
-                    <li className="p-4 border-b border-gray-300">Chat 11</li>
-                    <li className="p-4 border-b border-gray-300">Chat 12</li>
-                    <li className="p-4 border-b border-gray-300">Chat 13</li>
+                    
                 </ul>
             </div>
         )

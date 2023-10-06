@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BsChat } from 'react-icons/bs';
+import { MessageCircle } from "lucide-react";
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -46,7 +46,7 @@ const LandingPage = () => {
         <div className="flex flex-col h-screen">
             <nav className="flex flex-wrap items-center justify-center p-6 border-b sm:row">
                 <div className="flex items-center justify-between flex-grow w-full space-x-4 sm:justify-normal sm:w-fit">
-                    <BsChat className="w-8 h-8" />
+                    <MessageCircle className="w-8 h-8" />
                     <h1>Message App</h1>
                 </div>
                 <div className="flex flex-col items-center mt-2 space-y-4 sm:mt-0 sm:space-y-0 sm:flex-row sm:space-x-4 sm:justify-end">
